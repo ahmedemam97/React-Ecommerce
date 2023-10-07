@@ -1,14 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { CounterContextProvider } from './components/Context/CounterContext';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+let queryClient = new QueryClient()
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <ReactQueryDevtools initialIsOpen='false' />
+    <CounterContextProvider>
+      <App />
+    </CounterContextProvider>
+  </QueryClientProvider>
+  // {/* </React.StrictMode> */}
 );
 
 // If you want to start measuring performance in your app, pass a function
