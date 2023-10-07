@@ -37,7 +37,7 @@ export default function ResetPassword() {
 
     const validationSchema = Yup.object({
         email: Yup.string().required('the email field is required!').email('email not valid'),
-        newPassword: Yup.string().matches(/^[A-Za-z]\w{7,15}$/, 'password not match').required('password is required!'),
+        newPassword: Yup.string().matches(/^[A-Za-z0-9]\w{7,}$/, 'password not match').required('password is required!'),
     }
     )
 
