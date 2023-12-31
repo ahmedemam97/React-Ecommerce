@@ -35,7 +35,7 @@ export default function Brands() {
       <div className="container mb-5">
         <div className="row">
           <h3 className='h2 brand-title pt-4'>All Brands</h3>
-          {brands = []? <h2>There is proplem in api's</h2> : brands.map((brand) => {
+          {brands = []? <h2>There is proplem in brands api's</h2> : brands.map((brand) => {
             return <div key={brand._id} className="brand">
 
               <img src={brand.image} alt="" className="w-100" />
