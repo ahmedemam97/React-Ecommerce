@@ -21,7 +21,7 @@ export default function Products() {
   }
 
   let { isLoading, isError, data, isFetched } = useQuery('getProducts', getAllProducts, { cacheTime: 60000 })
-
+  //console.log(data.data.data.catagory?.name);
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -70,7 +70,7 @@ export default function Products() {
                   <h4 className="px-3">{product.title.split(' ').slice(0, 2).join(' ')}</h4>
 
                   <div className='manage-width px-3'>
-                    <h4 className="h6">{product.brand.name}</h4>
+                    <h4 className="h6">{product.brand?.name ? product.brand?.name : product?.category.name}</h4>
 
                     <div className='d-flex justify-content-end'>
                       <h4 className="h6">{product.ratingsAverage}</h4>

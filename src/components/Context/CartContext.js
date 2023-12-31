@@ -6,12 +6,11 @@ export let cartContext = createContext();
 
 export function CartContextProvider(props) {
     let [cartId, setCartId] = useState(null)
+    let [cartCount, setCartCount] = useState(0)
 
 
-    // console.log(cartId);
     async function getCartId() {
         let { data } = await getLoggedUserCart()
-        // console.log(data?.data._id);
         setCartId(data?.data._id)
     }
     let headers = { token: localStorage.getItem("userToken") };
@@ -38,6 +37,7 @@ export function CartContextProvider(props) {
             )
             .then((res) => res)
             .catch((err) => err);
+            
     }
 
     function removeItem(productId) {
@@ -80,17 +80,18 @@ export function CartContextProvider(props) {
     }
 
 
+    
+    function getWishList() {
+        return axios.get(`https://ecommerce.routemisr.com/api/v1/wishlist`, { headers }
+        )
+        .then((res) => res)
+        .catch((err) => err)
+    }
+    
     function addToWishList(prdocutId) {
         return axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,
             { productId: prdocutId },
             { headers: headers }
-        )
-            .then((res) => res)
-            .catch((err) => err)
-    }
-
-    function getWishList() {
-        return axios.get(`https://ecommerce.routemisr.com/api/v1/wishlist`, { headers }
         )
             .then((res) => res)
             .catch((err) => err)
@@ -120,6 +121,8 @@ export function CartContextProvider(props) {
                 addToWishList,
                 removeFromWishList,
                 getWishList,
+                setCartCount,
+                cartCount
             }}
         >
             {props.children}

@@ -429,7 +429,7 @@ nav {
 
 
 .loading {
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     padding-top: 150px;

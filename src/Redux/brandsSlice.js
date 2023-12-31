@@ -10,6 +10,7 @@ let initialState = {
 export let getBrands = createAsyncThunk('brandsSlice/getBrands', 
     async ()=> {
         let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/brands`)
+        // console.log(data);
         return data.data;
     }    
 )

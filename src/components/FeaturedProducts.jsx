@@ -34,6 +34,7 @@ export default function FeaturedProducts() {
 
     let { addToCart, addToWishList, removeFromWishList } = useContext(cartContext)
     let { userToken } = useContext(UserContext)
+    let favIcon = useRef()
     const [isFavorite, setIsFavorite] = useState(false);
 
 
@@ -69,7 +70,7 @@ export default function FeaturedProducts() {
 
     async function wishList(id) {
         let response = await addToWishList(id)
-        console.log(response);
+        // console.log(response);
         if (!userToken) {
             toast.error(response.response.data.message)
         } else {
@@ -91,7 +92,9 @@ export default function FeaturedProducts() {
         // enabled: false
     })
 
+    // console.log(data?.data.data);
 
+    // console.log(favIcon.current);
     useEffect(()=> {
         getFeaturedProducts()
     }, [isFavorite])
@@ -110,7 +113,7 @@ export default function FeaturedProducts() {
                         return <div className="col-md-4 col-sm-6 col-lg-3 p-3 product" key={ele._id}>
                             <Link to={`product-details/${ele._id}`}>
                                 <img src={ele.imageCover} className='w-100' alt='' />
-                                <p className='text-main pt-2 mb-1'>{ele.brand.name}</p>
+                                <p className='text-main pt-2 mb-1'>{ele.brand?.name}</p>
                                 <p className='mb-1'>{ele.category.name}</p>
                                 {/* <p>{ele.title.split(' ').slice(0, 2).join(' ')}</p> */}
 
@@ -127,7 +130,7 @@ export default function FeaturedProducts() {
 
                                     {isFavorite ?
 
-                                        <FavoriteIcon color='action' onClick={() => { wishList(ele._id) }} className={`favorite`} />
+                                        <FavoriteIcon ref={favIcon} color='action' onClick={() => { wishList(ele._id) }} className={`favorite`} />
                                         :
                                         <FavoriteIcon style={{ color: 'red' }} onClick={() => { wishList(ele._id) }} className={`favorite`} />
                                     }

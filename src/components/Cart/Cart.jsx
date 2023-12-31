@@ -16,6 +16,7 @@ export default function Cart() {
     try {
       let { data } = await getLoggedUserCart()
       setCartDetails(data)
+      // console.log(data);
     } catch (error) {
 
       console.error('Error getting cart:', error);

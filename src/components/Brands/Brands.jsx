@@ -20,7 +20,7 @@ export default function Brands() {
 
   let popup = useRef()
 
-  console.log(popup);
+  // console.log(popup);
 
   return (
 
