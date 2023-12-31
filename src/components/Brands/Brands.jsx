@@ -36,14 +36,14 @@ export default function Brands() {
       <div className="container mb-5">
         <div className="row">
           <h3 className='h2 brand-title pt-4'>All Brands</h3>
-          {brands.map((brand) => {
+          {brands? brands.map((brand) => {
             return <div key={brand._id} className="brand">
 
               <img src={brand.image} alt="" className="w-100" />
               <h4 className="h6 fw-bold">{brand.name}</h4>
 
             </div>
-          })}
+          }) : "There is proplem in api's"}
         </div>
       </div>
     </>
